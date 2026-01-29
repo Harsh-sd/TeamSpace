@@ -3,7 +3,8 @@
 # dependencies
 /node_modules
 .env
-/generated/prisma
+
+prisma/migrations/
 /.pnp
 .pnp.*
 .yarn/*
