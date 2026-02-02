@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function loginForm() {
+export default function LoginForm() {
     const router = useRouter();
     //Initial setup of form using validatioan and default values
     const form = useForm({
@@ -26,6 +26,7 @@ export default function loginForm() {
       headers: {
         "Content-Type": "application/json",
       },
+       credentials: "include",
       body: JSON.stringify(values),
     });
 
@@ -40,8 +41,15 @@ export default function loginForm() {
 
     console.log("Login success:", data);
 
-    // Navigate to dashboard on success
-      router.push("/dashboard");
+    
+   
+      // ✅ clear form fields
+    form.reset();
+
+    //  navigate to dashboard
+    router.push("/dashboard");
+   
+
   } catch (error) {
     console.error("Login error:", error.message);
     alert(error.message);
