@@ -15,6 +15,35 @@ model User {
   refreshTokens RefreshToken[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
+ ownedTeams    Team[]         @relation("TeamOwner")
+  membership   TeamMember[]
+}
+
+model Team {
+  id           String     @id @default(uuid())
+  name         String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  createdById  String
+  createdBy    User       @relation("TeamOwner",fields :[createdById ],references:[id])
+  members      TeamMember[]
+}
+ enum TeamRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+model TeamMember{
+   id        String    @id @default(uuid())
+   userId    String
+   teamId    String
+  role       TeamRole  @default(MEMBER)
+   createdAt DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+   user      User      @relation(fields :[userId ],references:[id])
+   team     Team       @relation(fields :[teamId ],references:[id])
+   @@unique([teamId, userId])
+ 
 }
 
 model RefreshToken {
