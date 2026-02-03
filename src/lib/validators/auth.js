@@ -18,3 +18,8 @@ export const loginSchema = z.object({
   email: z.string().email("Invalid email"),
   password: z.string() // we can skip min length here
 });
+//team validation
+
+export const createTeamSchema = z.object({
+  name: z.string().min(2, "Team name must be at least 2 characters"),
+});

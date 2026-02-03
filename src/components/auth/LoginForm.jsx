@@ -26,7 +26,6 @@ export default function LoginForm() {
       headers: {
         "Content-Type": "application/json",
       },
-       credentials: "include",
       body: JSON.stringify(values),
     });
 
@@ -41,13 +40,9 @@ export default function LoginForm() {
 
     console.log("Login success:", data);
 
-    
-   
-      // ✅ clear form fields
-    form.reset();
-
-    //  navigate to dashboard
-    router.push("/dashboard");
+    // Navigate to dashboard on success
+     form.reset();
+      router.push("/dashboard")
    
 
   } catch (error) {
