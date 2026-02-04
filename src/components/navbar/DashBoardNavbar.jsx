@@ -27,7 +27,7 @@ export default function DashboardNavbar() {
           <DialogHeader>
             <DialogTitle>Create a new team</DialogTitle>
           </DialogHeader>
-
+ 
           <CreateTeamForm onSuccess={() => setOpen(false)} />
         </DialogContent>
       </Dialog>
